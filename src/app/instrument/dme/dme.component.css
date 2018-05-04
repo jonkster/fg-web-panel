@@ -1,0 +1,25 @@
+#dme-nm {
+        top: 50px;
+        left: -60px;
+}
+#dme-kts {
+        top: 50px;
+        left: 5px;
+}
+
+#dme-min {
+        top: 50px;
+        left: 45px;
+}
+.dme-text {
+        font-size: 1.6em;
+        font-weight: bold;
+        color: #ff0000;
+        position: relative;
+        display: inline;
+        background-color: black;
+        font-family: 'Segment7Standard', "Courier New"; 
+        font-weight: normal; 
+        font-style: italic; 
+}
+

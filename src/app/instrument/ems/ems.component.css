@@ -1,0 +1,31 @@
+#ems-fan-l {
+        top: 250px;
+        left: -85px;
+}
+#ems-fan-r {
+        top: 250px;
+        left: -75px;
+}
+
+#ems-itt-l {
+        top: 250px;
+        left: -30px;
+}
+#ems-itt-r {
+        top: 250px;
+        left: -20px;
+}
+.ems-text {
+        font-size: 1.6em;
+        font-weight: bold;
+        color: #ffffa0;
+        position: relative;
+        display: inline;
+        background-color: gray;
+}
+.ems {
+        padding-top: 0em;
+        padding-top: 0em;
+        padding-left: 0em;
+        padding-right: 0em;
+}
