@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+
 import { AppComponent } from './app.component';
 import { AsiComponent } from './instrument/asi/asi.component';
 import { VsiComponent } from './instrument/vsi/vsi.component';
@@ -46,7 +48,9 @@ import { ChsiComponent } from './controls/chsi/chsi.component';
     AppRoutingModule,
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [FgService],
   bootstrap: [AppComponent]

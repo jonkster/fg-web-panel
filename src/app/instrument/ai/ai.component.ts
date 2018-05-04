@@ -16,7 +16,10 @@ export class AiComponent implements OnInit, AfterViewInit  {
   private aob: number = 0;
   private pitch: number = 0;
 
-  constructor(private fgService: FgService) { }
+  constructor(private fgService: FgService) {
+      this.fgService.setDebugValue("/orientation/roll-deg", 0, -15, 15 );
+      this.fgService.setDebugValue("/orientation/pitch-deg", 0, -7, 7);
+}
 
   ngOnInit() {
         let siht = this;

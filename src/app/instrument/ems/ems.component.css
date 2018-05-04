@@ -24,8 +24,9 @@
         background-color: gray;
 }
 .ems {
-        padding-top: 0em;
-        padding-top: 0em;
-        padding-left: 0em;
-        padding-right: 0em;
+    border: 2px inset #a0a0a0;
+    padding-top: 0em;
+    padding-top: 0em;
+    padding-left: 0em;
+    padding-right: 0em;
 }

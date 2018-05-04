@@ -16,7 +16,10 @@ export class TcComponent implements OnInit, AfterViewInit  {
   private roll: number = 0;
   private slip: number = 0;
 
-  constructor(private fgService: FgService) { }
+  constructor(private fgService: FgService) {
+      this.fgService.setDebugValue("/orientation/yaw-rate-degps", 0, -3, 3 );
+      this.fgService.setDebugValue("/orientation/side-slip-deg", 0, -7, 7);
+  }
 
   ngOnInit() {
         let siht = this;

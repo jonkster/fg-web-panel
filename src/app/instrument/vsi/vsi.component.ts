@@ -78,7 +78,9 @@ export class VsiComponent implements OnInit, AfterViewInit  {
         },
   ];
 
-  constructor(private fgService: FgService) { }
+  constructor(private fgService: FgService) {
+      this.fgService.setDebugValue("velocities/vertical-speed-fps", 0, -500, 500);
+  }
 
   ngOnInit() {
         let siht = this;

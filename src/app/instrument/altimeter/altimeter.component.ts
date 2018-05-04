@@ -15,7 +15,9 @@ export class AltimeterComponent implements OnInit, AfterViewInit  {
 
   private altitude: number = 0;
 
-  constructor(private fgService: FgService) { }
+  constructor(private fgService: FgService) {
+      this.fgService.setDebugValue("/position/altitude-ft", 3300, 3000, 4000);
+  }
 
   ngOnInit() {
         let siht = this;

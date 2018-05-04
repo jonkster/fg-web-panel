@@ -44,15 +44,17 @@ export class AsiComponent implements OnInit, AfterViewInit   {
   };
 
 
-  constructor(private fgService: FgService) { }
+  constructor(private fgService: FgService) {
+      this.fgService.setDebugValue("velocities/airspeed-kt", 160, 100, 200);
+  }
 
   ngOnInit() {
-        let siht = this;
-        setInterval(() => { siht.getData() }, 100);
+      let siht = this;
+      setInterval(() => { siht.getData() }, 100);
   }
 
   ngAfterViewInit() {
-          this.instrument.addBackgroundImage("assets/panel.gif", "asi", -1, 0);
+      //    this.instrument.addBackgroundImage("assets/panel.gif", "asi", -1, 0);
           this.instrument.addBackgroundImage("assets/asi-full.gif", "asi", 0, 0);
           this.instrument.addBackgroundImage("assets/asi-needle-full.gif", "asi-needle", 1, 0);
           this.setSpeed(0);

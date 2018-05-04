@@ -22,9 +22,9 @@ export class ChsiComponent implements OnInit {
   }
 
   setObs(delta: number) {
-        let obsPath = "instrumentation/hsi/inputs/radials";
+        let obsPath = "/instrumentation/hsi/inputs/radials/";
         let obsItem = "selected-deg";
-        let obs = Number(this.getProperty(obsPath + '/' + obsItem));
+        let obs = Number(this.getProperty(obsPath + obsItem));
         if (! isNaN(obs)) {
                 obs = (obs + delta) % 360;
                 this.fgService.setProperty(obsPath, obsItem, String(obs));
@@ -34,7 +34,7 @@ export class ChsiComponent implements OnInit {
   setBug(delta: number) {
         let obsPath = "/autopilot/settings/";
         let obsItem = "heading-bug-deg";
-        let obs = Number(this.getProperty(obsPath + '/' + obsItem));
+        let obs = Number(this.getProperty(obsPath + obsItem));
         if (! isNaN(obs)) {
                 obs = (obs + delta) % 360;
                 this.fgService.setProperty(obsPath, obsItem, String(obs));

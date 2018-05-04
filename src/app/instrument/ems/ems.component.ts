@@ -20,7 +20,14 @@ export class EmsComponent implements OnInit, AfterViewInit  {
   private n2_l: number = 50;
   private n2_r: number = 50;
 
-  constructor(private fgService: FgService) { }
+  constructor(private fgService: FgService) {
+      this.fgService.setDebugValue("/engines/engine/fan", 60, 55, 80);
+      this.fgService.setDebugValue("/engines/engine[1]/fan", 60, 55, 80);
+      this.fgService.setDebugValue("/engines/engine/itt-norm-display", 600, 500, 670);
+      this.fgService.setDebugValue("/engines/engine[1]/itt-norm-display", 600, 500, 670);
+      this.fgService.setDebugValue("/engines/engine/turbine", 70, 55, 80);
+      this.fgService.setDebugValue("/engines/engine[1]/turbine", 70, 55, 80);
+  }
 
   ngOnInit() {
         let siht = this;

@@ -11,6 +11,17 @@
         top: 50px;
         left: 45px;
 }
+.status {
+        font-size: 1.6em;
+        font-weight: bold;
+        color: #ff0000;
+        position: relative;
+        display: block;
+        background-color: black;
+        font-family: "Courier New"; 
+        font-weight: normal; 
+        font-style: italic; 
+}
 .dme-text {
         font-size: 1.6em;
         font-weight: bold;
@@ -23,3 +34,6 @@
         font-style: italic; 
 }
 
+.dme {
+    border: 2px inset #a0a0a0;
+}

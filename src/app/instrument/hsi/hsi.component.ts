@@ -20,7 +20,13 @@ export class HsiComponent implements OnInit, AfterViewInit  {
   private bearingOff: number = 0;
   private gsOff: number = 0;
 
-  constructor(private fgService: FgService) { }
+  constructor(private fgService: FgService) {
+      this.fgService.setDebugValue("/instrumentation/heading-indicator/indicated-heading-deg", 180, 0, 359);
+      this.fgService.setDebugValue("/instrumentation/hsi/inputs/hsi-loc-deflection", 4, 2, 6);
+      this.fgService.setDebugValue("/instrumentation/hsi/inputs/hsi-gs-deflection", 0, -1.2, 1.2);
+      this.fgService.setDebugValue("/instrumentation/hsi/inputs/radials/selected-deg", 180, 180, 180);
+      this.fgService.setDebugValue("/autopilot/settings/heading-bug-deg", 180, 180, 180);
+  }
 
   ngOnInit() {
         let siht = this;
