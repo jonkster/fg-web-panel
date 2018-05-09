@@ -16,16 +16,6 @@ export class FgService implements OnInit {
   private fgDetected: boolean = false;
 
   constructor(private http: Http) {
-        this.http.get('http://' + this.fgHost + ':5500/json/')
-                .map((response) => response.json())
-                .subscribe(
-                          data => {
-                              this.fgDetected = true;
-                          },
-                          error => {
-                                  console.log('error', error);
-                          }
-                    );
         
         let siht = this;
         setInterval(() => {
@@ -33,6 +23,23 @@ export class FgService implements OnInit {
                 for (let i = 0; i < paths.length; i++) {
                         siht.getProperty(paths[i], this);
                 } },100);
+        setInterval(() => {
+                siht.detectFg();
+        }, 3000);
+  }
+
+  detectFg() {
+        this.http.get('http://' + this.fgHost + ':5500/json/')
+                .map((response) => response.json())
+                .subscribe(
+                          data => {
+                              this.fgDetected = true;
+                          },
+                          error => {
+                                this.fgDetected = false;
+                                  console.log('error', error);
+                          }
+                    );
   }
 
   ngOnInit() {
