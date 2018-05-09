@@ -27,7 +27,7 @@ export class HsiComponent implements OnInit, AfterViewInit  {
       this.fgService.setDebugValue("/instrumentation/hsi/inputs/hsi-gs-deflection", 0, -1.2, 1.2);
       this.fgService.setDebugValue("/instrumentation/hsi/inputs/radials/selected-deg", 180, 180, 180);
       this.fgService.setDebugValue("/autopilot/settings/heading-bug-deg", 180, 180, 180);
-      this.fgService.setDebugValue("/instrumentation/adf/indicated-bearing-deg", 90, 0, 359);
+      this.fgService.setDebugValue("/instrumentation/rmi/single-needle/position-deg", 90, 0, 359);
   }
 
   ngOnInit() {
@@ -42,8 +42,8 @@ export class HsiComponent implements OnInit, AfterViewInit  {
           this.instrument.addBackgroundImage("assets/hsi-obs.gif", "hsi-obs", 2, 10);
           this.instrument.addBackgroundImage("assets/hsi-gs.gif", "hsi-gs", 3, 10);
           this.instrument.addBackgroundImage("assets/hsi-cdi-needle.gif", "hsi-cdi-needle", 4, 10);
-          this.instrument.addBackgroundImage("assets/hsi-glass.gif", "hsi-glass", 5, 10);
-          this.instrument.addBackgroundImage("assets/hsi-adf-needle.gif", "adf-needle", 4, 10);
+          this.instrument.addBackgroundImage("assets/hsi-adf-needle.gif", "adf-needle", 5, 10);
+          this.instrument.addBackgroundImage("assets/hsi-glass.gif", "hsi-glass", 6, 10);
   }
 
   getData() {
@@ -52,7 +52,7 @@ export class HsiComponent implements OnInit, AfterViewInit  {
           this.headingbug = Number(this.getProperty("/autopilot/settings/heading-bug-deg"));
           this.bearingOff =  -Number(this.getProperty("/instrumentation/hsi/inputs/hsi-loc-deflection"));
           this.gsOff = -Number(this.getProperty("/instrumentation/hsi/inputs/hsi-gs-deflection"));
-          this.adfBearing = Number(this.getProperty("/instrumentation/adf/indicated-bearing-deg"));
+          this.adfBearing = Number(this.getProperty("/instrumentation/rmi/single-needle/position-deg"));
           if (isNaN(this.heading)) {
                   this.heading = 0;
           }
@@ -89,7 +89,7 @@ export class HsiComponent implements OnInit, AfterViewInit  {
         this.instrument.rotatePart('hsi-cdi-needle', obs - hdg );
         this.instrument.shiftLeft('hsi-cdi-needle', bearingOff * 5);
         this.instrument.shiftUp('hsi-gs', gsOff * 15);
-        this.instrument.rotatePart('adf-needle', adf);
+        this.instrument.rotatePart('adf-needle', adf - hdg);
   }
 
 
