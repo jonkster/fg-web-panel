@@ -19,6 +19,7 @@ export class HsiComponent implements OnInit, AfterViewInit  {
   private cdi: number = 0;
   private bearingOff: number = 0;
   private gsOff: number = 0;
+  private adfBearing: number = 0;
 
   constructor(private fgService: FgService) {
       this.fgService.setDebugValue("/instrumentation/heading-indicator/indicated-heading-deg", 180, 0, 359);
@@ -26,6 +27,7 @@ export class HsiComponent implements OnInit, AfterViewInit  {
       this.fgService.setDebugValue("/instrumentation/hsi/inputs/hsi-gs-deflection", 0, -1.2, 1.2);
       this.fgService.setDebugValue("/instrumentation/hsi/inputs/radials/selected-deg", 180, 180, 180);
       this.fgService.setDebugValue("/autopilot/settings/heading-bug-deg", 180, 180, 180);
+      this.fgService.setDebugValue("/instrumentation/adf/indicated-bearing-deg", 90, 0, 359);
   }
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class HsiComponent implements OnInit, AfterViewInit  {
           this.instrument.addBackgroundImage("assets/hsi-gs.gif", "hsi-gs", 3, 10);
           this.instrument.addBackgroundImage("assets/hsi-cdi-needle.gif", "hsi-cdi-needle", 4, 10);
           this.instrument.addBackgroundImage("assets/hsi-glass.gif", "hsi-glass", 5, 10);
+          this.instrument.addBackgroundImage("assets/hsi-adf-needle.gif", "adf-needle", 4, 10);
   }
 
   getData() {
@@ -49,6 +52,7 @@ export class HsiComponent implements OnInit, AfterViewInit  {
           this.headingbug = Number(this.getProperty("/autopilot/settings/heading-bug-deg"));
           this.bearingOff =  -Number(this.getProperty("/instrumentation/hsi/inputs/hsi-loc-deflection"));
           this.gsOff = -Number(this.getProperty("/instrumentation/hsi/inputs/hsi-gs-deflection"));
+          this.adfBearing = Number(this.getProperty("/instrumentation/adf/indicated-bearing-deg"));
           if (isNaN(this.heading)) {
                   this.heading = 0;
           }
@@ -64,7 +68,10 @@ export class HsiComponent implements OnInit, AfterViewInit  {
           if (isNaN(this.gsOff)) {
                   this.gsOff = 0;
           }
-          this.setSpeed(this.heading, this.headingbug, this.obs, this.bearingOff, this.gsOff);
+          if (isNaN(this.adfBearing)) {
+                  this.adfBearing = 0;
+          }
+          this.setSpeed(this.heading, this.headingbug, this.obs, this.bearingOff, this.gsOff, this.adfBearing);
   }
 
   getProperty(path: string): string {
@@ -75,13 +82,14 @@ export class HsiComponent implements OnInit, AfterViewInit  {
         return v;
   }
 
-  setSpeed(hdg: number, bug: number, obs: number, bearingOff: number, gsOff: number) {
+  setSpeed(hdg: number, bug: number, obs: number, bearingOff: number, gsOff: number, adf: number) {
         this.instrument.rotatePart('hsi-card', -hdg );
         this.instrument.rotatePart('hsi-hdgbug', bug - hdg );
         this.instrument.rotatePart('hsi-obs', obs - hdg );
         this.instrument.rotatePart('hsi-cdi-needle', obs - hdg );
         this.instrument.shiftLeft('hsi-cdi-needle', bearingOff * 5);
         this.instrument.shiftUp('hsi-gs', gsOff * 15);
+        this.instrument.rotatePart('adf-needle', adf);
   }
 
 
